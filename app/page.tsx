@@ -196,9 +196,7 @@ export default function BlastRadius() {
 
       {/* Ocean BG */}
       <div style={{position:'fixed',inset:0,zIndex:0,pointerEvents:'none',background:'radial-gradient(ellipse at 15% 40%,#071422 0%,#030810 55%,#010305 100%)'}}>
-        {Array.from({length:50}).map((_,i)=>(
-          <div key={i} style={{position:'absolute',width:i%7===0?2:1,height:i%7===0?2:1,background:'white',borderRadius:'50%',top:`${5+Math.random()*60}%`,left:`${Math.random()*100}%`,animation:`twinkle ${2+Math.random()*4}s ease-in-out infinite`,animationDelay:`${Math.random()*4}s`,opacity:0.25}}/>
-        ))}
+        
         <div style={{position:'absolute',top:36,right:72,width:52,height:52,borderRadius:'50%',background:'rgba(241,245,249,0.03)',border:'1px solid rgba(241,245,249,0.06)'}}/>
         <div style={{position:'absolute',bottom:0,left:0,right:0,height:100,background:'linear-gradient(to top,rgba(14,165,233,0.05),transparent)'}}/>
         <div style={{position:'absolute',bottom:0,left:0,right:0,height:55,overflow:'hidden',opacity:0.2}}>
