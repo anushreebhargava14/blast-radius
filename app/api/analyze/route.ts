@@ -85,17 +85,19 @@ FROM github.commits
   // ── Demo AI assessment ──────────────────────────────────────
   const assessment = {
     score:
-      pr.additions > 200
-        ? 'HIGH'
-        : pr.additions > 100
-          ? 'MEDIUM'
-          : 'LOW',
+  (pr.changed_files ?? 0) > 10
+    ? 'CRITICAL'
+    : (pr.changed_files ?? 0) > 5
+      ? 'HIGH'
+      : (pr.changed_files ?? 0) > 2
+        ? 'MEDIUM'
+        : 'LOW',
 
-    scoreReason:
-      pr.changed_files > 5
-        ? 'Large pull request touching multiple files'
-        : 'Moderate code changes detected',
-
+scoreReason:
+  (pr.changed_files ?? 0) > 5
+    ? 'Large pull request touching multiple files'
+    : 'Moderate code changes detected',
+    
     summary:
       'This pull request modifies multiple areas of the codebase and may introduce deployment instability if merged without testing.',
 
