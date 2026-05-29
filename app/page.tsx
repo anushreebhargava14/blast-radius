@@ -292,6 +292,8 @@ export default function BlastRadius() {
 
               {result&&cfg&&(
                 <div style={{display:'flex',flexDirection:'column',gap:16}}>
+
+                  {/* CARD 1 — Risk score hero */}
                   <div className="card c1" style={{background:cfg.glow,border:`1px solid ${cfg.border}`,borderRadius:12,padding:'22px 26px',display:'flex',alignItems:'center',gap:24,flexWrap:'wrap',boxShadow:`0 0 35px ${cfg.glow}`,position:'relative',overflow:'hidden'}}>
                     <div style={{position:'absolute',right:18,top:'50%',transform:'translateY(-50%)',fontSize:100,opacity:0.04,pointerEvents:'none'}}>☠</div>
                     <RiskGauge score={result.score}/>
@@ -309,6 +311,7 @@ export default function BlastRadius() {
                     </div>
                   </div>
 
+                  {/* CARD 2 — Stats row */}
                   <div className="card c2" style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12}}>
                     {[
                       {label:'Files Changed',val:result.pr.changedFiles,sub:`+${result.pr.additions} / -${result.pr.deletions}`,color:'#f1f5f9',icon:'📁'},
@@ -328,12 +331,28 @@ export default function BlastRadius() {
                     ))}
                   </div>
 
-                  <div className="card c3" style={{background:'rgba(6,14,26,0.8)',border:'1px solid rgba(14,165,233,0.08)',borderRadius:10,padding:'20px 24px'}}>
+                  {/* CARD — Suggested Reviewers (right after stats) */}
+                  {result.reviewerSuggestions && result.reviewerSuggestions.length > 0 && (
+                    <div className="card c3" style={{ background:'rgba(10,22,40,0.7)', border:'1px solid rgba(124,58,237,0.15)', borderRadius:10, padding:'20px 28px' }}>
+                      <div style={{ fontSize:9, color:'rgba(124,58,237,0.5)', letterSpacing:3, marginBottom:12, textTransform:'uppercase' }}>🧭 Suggested Reviewers</div>
+                      <div style={{ display:'flex', gap:12 }}>
+                        {result.reviewerSuggestions.map((r: any, i: number) => (
+                          <div key={i} style={{ padding:'8px 16px', background:'rgba(124,58,237,0.08)', border:'1px solid rgba(124,58,237,0.2)', borderRadius:6, fontSize:12, color:'#a78bfa' }}>
+                            @{r.author_login} · {r.commit_count} commits
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* CARD — Captain's Assessment */}
+                  <div className="card c4" style={{background:'rgba(6,14,26,0.8)',border:'1px solid rgba(14,165,233,0.08)',borderRadius:10,padding:'20px 24px'}}>
                     <div style={{fontSize:7.5,color:'rgba(14,165,233,0.32)',letterSpacing:3,marginBottom:10,textTransform:'uppercase'}}>⚓ Captain's Assessment</div>
                     <p style={{color:'rgba(241,245,249,0.78)',fontSize:11.5,lineHeight:1.85}}>{result.summary}</p>
                   </div>
 
-                  <div className="card c4" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
+                  {/* CARD — Navigator's Orders + Hazards */}
+                  <div className="card c5" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
                     <div style={{background:'rgba(6,14,26,0.8)',border:'1px solid rgba(34,197,94,0.1)',borderRadius:10,padding:'20px 24px'}}>
                       <div style={{fontSize:7.5,color:'rgba(34,197,94,0.4)',letterSpacing:3,marginBottom:12,textTransform:'uppercase'}}>🗺️ Navigator's Orders</div>
                       {result.recommendations.map((r,i)=>(
@@ -354,19 +373,7 @@ export default function BlastRadius() {
                     </div>
                   </div>
 
-                  {result.reviewerSuggestions&&result.reviewerSuggestions.length>0&&(
-                    <div className="card c5" style={{background:'rgba(6,14,26,0.8)',border:'1px solid rgba(124,58,237,0.12)',borderRadius:10,padding:'20px 24px'}}>
-                      <div style={{fontSize:7.5,color:'rgba(124,58,237,0.4)',letterSpacing:3,marginBottom:12,textTransform:'uppercase'}}>🧭 Reviewer Compass — Best crew for this PR</div>
-                      <div style={{display:'flex',gap:9,flexWrap:'wrap'}}>
-                        {result.reviewerSuggestions.map((r,i)=>(
-                          <div key={i} style={{padding:'7px 14px',background:'rgba(124,58,237,0.06)',border:'1px solid rgba(124,58,237,0.16)',borderRadius:6,fontSize:10.5,color:'#a78bfa'}}>
-                            @{r.author_login} · {r.commit_count} commits
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
+                  {/* CARD — Intelligence Gathered */}
                   {(result.sources.linearItems?.length>0||result.sources.slackItems?.length>0)&&(
                     <div className="card c6" style={{background:'rgba(6,14,26,0.8)',border:'1px solid rgba(14,165,233,0.08)',borderRadius:10,padding:'20px 24px'}}>
                       <div style={{fontSize:7.5,color:'rgba(14,165,233,0.32)',letterSpacing:3,marginBottom:12,textTransform:'uppercase'}}>🔭 Intelligence Gathered — via Coral SQL</div>
@@ -394,6 +401,7 @@ export default function BlastRadius() {
                       </div>
                     </div>
                   )}
+
                   <div style={{textAlign:'center',fontSize:8.5,color:'rgba(148,163,184,0.13)',letterSpacing:2,paddingTop:5,borderTop:'1px solid rgba(14,165,233,0.04)'}}>
                     ☠ 3 SOURCES · 1 CORAL SQL QUERY · 0 GLUE CODE · POWERED BY CLAUDE ☠
                   </div>
