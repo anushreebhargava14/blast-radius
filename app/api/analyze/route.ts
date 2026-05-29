@@ -74,11 +74,10 @@ FROM github.commits
 
   // ── Placeholder comments source ─────────────────────────────
  const commentsData = await coralQuery(`
-  SELECT body
-  FROM github.pull_request_comments
+  SELECT body, user__login
+  FROM github.repo_issue_comments
   WHERE owner = '${owner}'
     AND repo = '${repoName}'
-    AND pull_number = ${prNumber}
   LIMIT 10
 `)
 
@@ -97,7 +96,7 @@ scoreReason:
   (pr.changed_files ?? 0) > 5
     ? 'Large pull request touching multiple files'
     : 'Moderate code changes detected',
-    
+
     summary:
       'This pull request modifies multiple areas of the codebase and may introduce deployment instability if merged without testing.',
 
@@ -133,7 +132,10 @@ reviewerSuggestions: commitData.slice(0, 3).map((r: any) => ({
       linearIssues: linearData.length,
       slackMessages: commentsData.length,
       linearItems: linearData.slice(0, 3),
-      slackItems: commentsData.slice(0, 3),
+      slackItems: commentsData.slice(0, 3).map((c: any) => ({
+  username: c.user__login,
+  text: c.body,
+})),
     }
   })
 }
