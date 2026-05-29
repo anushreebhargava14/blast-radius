@@ -1,5 +1,7 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
+import BlastRadiusViz from '@/components/BlastRadiusViz'
+import FleetCommandDashboard from '@/components/FleetCommandDashboard'
 
 type RiskScore = 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL'
 type Tab = 'analyze' | 'fleet' | 'log'
@@ -345,6 +347,10 @@ export default function BlastRadius() {
                     </div>
                   )}
 
+<div className="card c3">
+  <BlastRadiusViz pr={result.pr} score={result.score} />
+</div>
+
                   {/* CARD — Captain's Assessment */}
                   <div className="card c4" style={{background:'rgba(6,14,26,0.8)',border:'1px solid rgba(14,165,233,0.08)',borderRadius:10,padding:'20px 24px'}}>
                     <div style={{fontSize:7.5,color:'rgba(14,165,233,0.32)',letterSpacing:3,marginBottom:10,textTransform:'uppercase'}}>⚓ Captain's Assessment</div>
@@ -435,6 +441,11 @@ export default function BlastRadius() {
               )}
               {fleetData?.prs&&(
                 <div>
+
+<FleetCommandDashboard
+  data={fleetData}
+  repo={fleetRepo}
+/>
                   <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:13}}>
                     <span style={{fontFamily:"'Cinzel',serif",fontSize:9.5,color:'rgba(14,165,233,0.45)',letterSpacing:3}}>{fleetData.total} OPEN PRs · RANKED BY RISK</span>
                     <span style={{fontSize:7.5,color:'rgba(148,163,184,0.18)',letterSpacing:2}}>github.pulls WHERE state='open'</span>
