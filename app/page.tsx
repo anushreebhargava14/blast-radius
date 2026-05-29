@@ -314,7 +314,7 @@ export default function BlastRadius() {
                   {/* CARD 2 — Stats row */}
                   <div className="card c2" style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12}}>
                     {[
-                      {label:'Files Changed',val:result.pr.changedFiles,sub:`+${result.pr.additions} / -${result.pr.deletions}`,color:'#f1f5f9',icon:'📁'},
+                      {label:'Files Changed',val:result.pr.changedFiles,sub: result.pr.additions != null ? `+${result.pr.additions} / -${result.pr.deletions}` : 'stats unavailable',color:'#f1f5f9',icon:'📁'},
                       {label:'Linear Issues',val:result.sources.linearIssues,sub:'linked work items',color:'#f59e0b',icon:'📋'},
                       {label:'PR Comments',val:result.sources.slackMessages,sub:'review discussions',color:'#0ea5e9',icon:'💬'},
                     ].map((s,i)=>(

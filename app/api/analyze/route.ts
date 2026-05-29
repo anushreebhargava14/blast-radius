@@ -73,7 +73,14 @@ FROM github.commits
   `)
 
   // ── Placeholder comments source ─────────────────────────────
-  const slackData: any[] = []
+ const commentsData = await coralQuery(`
+  SELECT body
+  FROM github.pull_request_comments
+  WHERE owner = '${owner}'
+    AND repo = '${repoName}'
+    AND pull_number = ${prNumber}
+  LIMIT 10
+`)
 
   // ── Demo AI assessment ──────────────────────────────────────
   const assessment = {
@@ -114,7 +121,7 @@ FROM github.commits
       additions: pr.additions,
       deletions: pr.deletions,
     },
-    
+
 reviewerSuggestions: commitData.slice(0, 3).map((r: any) => ({
   author_login: r.author__login,
   commit_count: r.commit_count,
@@ -122,9 +129,9 @@ reviewerSuggestions: commitData.slice(0, 3).map((r: any) => ({
 
     sources: {
       linearIssues: linearData.length,
-      slackMessages: slackData.length,
+      slackMessages: commentsData.length,
       linearItems: linearData.slice(0, 3),
-      slackItems: slackData.slice(0, 3),
+      slackItems: commentsData.slice(0, 3),
     }
   })
 }
