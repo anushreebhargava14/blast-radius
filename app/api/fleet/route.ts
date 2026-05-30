@@ -18,6 +18,55 @@ async function coralQuery(sql: string): Promise<any[]> {
 
 export async function POST(req: NextRequest) {
   const { repo } = await req.json()
+  // Demo fleet mode for judges
+if (repo === 'demo/demo') {
+  return NextResponse.json({
+    repo: 'demo/demo',
+    total: 5,
+    prs: [
+      {
+        number: 42,
+        title: 'Refactor payment gateway timeout handling',
+        score: 'CRITICAL',
+        changed_files: 14,
+        additions: 342,
+        deletions: 89,
+      },
+      {
+        number: 37,
+        title: 'Authentication token refresh redesign',
+        score: 'HIGH',
+        changed_files: 9,
+        additions: 180,
+        deletions: 41,
+      },
+      {
+        number: 31,
+        title: 'Database migration for customer billing',
+        score: 'HIGH',
+        changed_files: 8,
+        additions: 156,
+        deletions: 22,
+      },
+      {
+        number: 28,
+        title: 'CI pipeline optimization',
+        score: 'MEDIUM',
+        changed_files: 4,
+        additions: 73,
+        deletions: 18,
+      },
+      {
+        number: 24,
+        title: 'UI accessibility improvements',
+        score: 'LOW',
+        changed_files: 2,
+        additions: 27,
+        deletions: 5,
+      }
+    ]
+  })
+}
   const [owner, repoName] = repo.split('/')
 
   if (!owner || !repoName) {
