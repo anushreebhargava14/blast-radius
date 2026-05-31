@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react'
 type RiskScore = 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL'
 
 interface PR {
+  number: number
   title: string
   changedFiles: number
   additions: number
