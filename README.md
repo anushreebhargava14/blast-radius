@@ -14,11 +14,7 @@ Claude reads the JOIN. GO or NO-GO in 12 seconds.
 
 <br/>
 
-🚀 Demo Mode Available
-
-Repository: demo/demo
-PR Number: 42
-
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Available-38bdf8?style=for-the-badge)](https://blast-radius-production-dc89.up.railway.app)
 [![Built with Coral](https://img.shields.io/badge/🪸_Built_with-Coral_SQL-a78bfa?style=for-the-badge)](https://github.com/withcoral/coral)
 [![Powered by Claude](https://img.shields.io/badge/🤖_Powered_by-Claude_AI-f472b6?style=for-the-badge)](https://anthropic.com)
 
