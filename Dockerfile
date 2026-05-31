@@ -2,13 +2,17 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Install dependencies
-RUN apk add --no-cache curl
+# Install Coral CLI
+RUN apk add --no-cache curl tar
 
-# Install Coral
-RUN curl -L https://github.com/withcoral/coral/releases/download/v0.3.0/coral_linux_amd64 \
-    -o /usr/local/bin/coral \
+RUN curl -L https://github.com/withcoral/coral/releases/download/v0.4.1/coral-x86_64-unknown-linux-gnu.tar.gz \
+    -o /tmp/coral.tar.gz \
+    && tar -xzf /tmp/coral.tar.gz -C /tmp \
+    && mv /tmp/coral /usr/local/bin/coral \
     && chmod +x /usr/local/bin/coral
+
+# Verify Coral installed
+RUN coral --version
 
 COPY package*.json ./
 RUN npm install
