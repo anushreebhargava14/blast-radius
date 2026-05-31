@@ -14,7 +14,11 @@ Claude reads the JOIN. GO or NO-GO in 12 seconds.
 
 <br/>
 
-[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Available-38bdf8?style=for-the-badge)](YOUR_VERCEL_URL_HERE)
+🚀 Demo Mode Available
+
+Repository: demo/demo
+PR Number: 42
+
 [![Built with Coral](https://img.shields.io/badge/🪸_Built_with-Coral_SQL-a78bfa?style=for-the-badge)](https://github.com/withcoral/coral)
 [![Powered by Claude](https://img.shields.io/badge/🤖_Powered_by-Claude_AI-f472b6?style=for-the-badge)](https://anthropic.com)
 
@@ -355,8 +359,7 @@ With Coral: 15 lines of SQL. That's the point.
 
 This project was built with assistance from Claude (Anthropic) for:
 - Architecture planning and technical guidance
-- Code generation for API routes and UI components
-- UI design direction and component structure
+- Code generation for API routes 
 
 All Coral SQL queries were written and validated against real Coral 0.3.0 schema. All data integrations are live and functional.
 
@@ -386,7 +389,6 @@ All Coral SQL queries were written and validated against real Coral 0.3.0 schema
 
 <div align="center">
 
-**☠ 3 SOURCES · 1 CORAL SQL QUERY · 0 GLUE CODE · POWERED BY CLAUDE ☠**
 
 *Built with [Coral](https://github.com/withcoral/coral) · [Anthropic Claude](https://anthropic.com) · [Next.js](https://nextjs.org)*
 
