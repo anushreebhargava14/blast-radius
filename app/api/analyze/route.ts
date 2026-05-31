@@ -65,10 +65,7 @@ if (repo === 'demo/demo' && prNumber === 42) {
   })
 }
 
- const [owner, repoName] = repo
-  .trim()
-  .split('/')
-  .map(s => s.trim())
+const [owner, repoName] = repo.trim().split('/')
 
   if (!owner || !repoName || !prNumber) {
     return NextResponse.json(
