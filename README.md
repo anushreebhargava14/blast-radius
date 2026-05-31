@@ -365,22 +365,22 @@ All Coral SQL queries were written and validated against real Coral 0.3.0 schema
 ## 📸 Screenshots
 
 ### Landing Page
-![Landing Page](public/screenshots/landing.png)
+![Landing Page](./public/screenshots/landing.png)
 
 ### PR Analyser — BLOCKED Verdict
-![Blocked](public/screenshots/blocked.png)
+![Blocked](./public/screenshots/blocked.png)
 
 ### PR Analyser — CLEAR TO SHIP
-![Clear](public/screenshots/clear.png)
+![Clear](./public/screenshots/clear.png)
 
 ### Fleet Scan + Fleet Command Dashboard
-![Fleet](public/screenshots/fleet.png)
+![Fleet](./public/screenshots/fleet.png)
 
 ### Repository Comparison
-![Compare](public/screenshots/compare.png)
+![Compare](./public/screenshots/compare.png)
 
 ### Mission Log
-![Mission Log](public/screenshots/log.png)
+![Mission Log](./public/screenshots/log.png)
 
 ---
 
